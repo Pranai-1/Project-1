@@ -2,10 +2,10 @@ import Navbar from './navbar';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function Signup(props) {
+function Signup() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [status, setStatus] = useState('default');
+ 
   const navigate = useNavigate();
   
   function handleSubmit() {

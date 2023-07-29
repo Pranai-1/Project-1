@@ -2,7 +2,7 @@ import Navbar from './navbar';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function Login() {
+function Login(props) {
  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -26,7 +26,7 @@ function Login() {
         if (data.message === 'success') {
           localStorage.setItem("token",data.token)
           alert("Login successful")
-          window.location.href="/admin/"
+          navigate("/admin/")
          
         } else {
          alert("Login failed")

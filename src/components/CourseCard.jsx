@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import UpdateCard from "./UpdateCard";
 function CourseCard(props){
-   
+    console.log("child ")
     return(
 <>
     <div  className="h-[300px] w-full bg-indigo-200 flex justify-center items-center mb-[-50px] z-0 flex-wrap">

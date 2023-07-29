@@ -2,35 +2,12 @@
  import { useEffect, useState } from "react";
 import Login from "./Login";
  
- function Navbar(){
+ function Navbar(props){
   const navigate=useNavigate()
   const [showSidebar, setShowSidebar] = useState(false);
   const[email,setEmail]=useState(null)
 
-  const[logged,setLogged]=useState(false)
-
-  useEffect(()=>{
-   let token=localStorage.getItem("token")
-    fetch("http://localhost:3000/admin/me",
-    {
-      method:"GET",
-      headers:{
-        "Content-Type":"application/json",
-        "Authorization":`Bearer ${token}`
-      }
-      }).then(response=>response.json()).then((data)=>{
-    if(data.message=='success'){
-     setLogged(true)
-     setEmail(data.email)
-      }
-    else{
-     setLogged(false)
-      }
-    
-   })
-  },[])
- 
-  const toggleSidebar = () => {
+ const toggleSidebar = () => {
     setShowSidebar((prevShowSidebar) => !prevShowSidebar);
   };
 
@@ -52,7 +29,7 @@ import Login from "./Login";
           {/* Sidebar content */}
           <ul className="text-white">
             <li onClick={()=>{
-              if(logged){
+              if(props.logged){
               navigate('/admin/create')
               }else{
                 alert("Login to continue")
@@ -62,7 +39,7 @@ import Login from "./Login";
               className="font-medium p-2 cursor-pointer text-blue-700 hover:text-red-600">
                 Create Course</li>
             <li onClick={()=>{
-              if(logged){
+              if(props.logged){
               navigate('/admin/courses')
               }else{
                 alert("Login to continue")
@@ -81,13 +58,13 @@ import Login from "./Login";
    <li className="md:font-medium md:p-2 md:m-1 cursor-pointer hover:text-indigo-700">About Us</li>
    <li className="md:font-medium md:p-2 md:m-1 cursor-pointer hover:text-indigo-700">Contact Us</li>
  </ul>
- {logged ?(
+ {props.logged ?(
 <>
 <div className=" hidden md:flex font-bold text-white">
   <p className="text-xs mt-3 text-black">{email}</p>
    <button onClick={()=>{
     localStorage.removeItem("token")
-    setLogged(false)
+    props.setLogged(false)
    
     navigate("/admin/")
    }} 

@@ -18,6 +18,7 @@ function UpdateCourses(){
     const navigate=useNavigate()
     useEffect(() => {
         let token = localStorage.getItem('token');
+       
         axios.get("http://localhost:3000/admin/courses/" + id, {
           headers: {
             "Authorization": `Bearer ${token}`
@@ -38,7 +39,7 @@ function UpdateCourses(){
         });
       }, []);
       
-
+      console.log("parent update")
   
     
   
@@ -46,7 +47,7 @@ function UpdateCourses(){
         return(
             <>
          
-           <CourseCard course={course} id={id} setCourse={setCourse}/>
+           <CourseCard course={course} id={id}/>
              <UpdateCard course={course} id={id} setCourse={setCourse}/>
             </>
         )
